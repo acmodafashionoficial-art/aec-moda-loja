@@ -143,20 +143,47 @@ function mapProduct(value: VariantRow["products"]) {
 }
 
 async function loadVariants(variantIds: string[]) {
-  if (!variantIds.length) return new Map<string, VariantRow>();
-  const supabase = adminClient();
-  const { data, error } = await supabase
-    .from("product_variants")
-    .select("id, product_id, sku, size, color, stock, reserved_stock, active, products!product_variants_product_id_fkey(id, name, price, image_url, image_thumbnail_url, active)")
-    .in("id", [...new Set(variantIds)]);
-  if (error) {
-    // Keep the server log actionable without exposing credentials or customer data.
-    const diagnostic = [error.code, error.message, error.details, error.hint]
-      .filter(Boolean)
-      .join(" | ");
-    throw new Error(`Erro ao carregar as variações: ${diagnostic}`);
+  const uniqueIds = [...new Set(variantIds)];
+
+  if (!uniqueIds.length) {
+    return new Map<string, VariantRow>();
   }
-  return new Map(((data || []) as unknown as VariantRow[]).map((variant) => [variant.id, variant]));
+
+  const supabase = adminClient();
+  const variants = new Map<string, VariantRow>();
+  const batchSize = 100;
+
+  for (let i = 0; i < uniqueIds.length; i += batchSize) {
+    const batch = uniqueIds.slice(i, i + batchSize);
+
+    const { data, error } = await supabase
+      .from("product_variants")
+      .select(
+        "id, product_id, sku, size, color, stock, reserved_stock, active, products!product_variants_product_id_fkey(id, name, price, image_url, image_thumbnail_url, active)"
+      )
+      .in("id", batch);
+
+    if (error) {
+      const diagnostic = [
+        error.code,
+        error.message,
+        error.details,
+        error.hint,
+      ]
+        .filter(Boolean)
+        .join(" | ");
+
+      throw new Error(
+        `Erro ao carregar as variações (lote ${Math.floor(i / batchSize) + 1}): ${diagnostic}`
+      );
+    }
+
+    for (const variant of (data || []) as unknown as VariantRow[]) {
+      variants.set(variant.id, variant);
+    }
+  }
+
+  return variants;
 }
 
 function combineUnit(unit: InventoryUnitRow, variant: VariantRow | undefined): InventoryUnitView | null {
