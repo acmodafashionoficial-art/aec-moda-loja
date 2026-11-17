@@ -1,0 +1,402 @@
+[
+  {
+    "id": "body-vinho",
+    "slug": "body-vinho",
+    "name": "Body Vinho",
+    "category": "Feminino",
+    "price": 50,
+    "description": "Body elegante e confortável, ideal para composições casuais ou noturnas.",
+    "image": "/products/body-vinho.svg",
+    "images": [
+      "/products/body-vinho.svg"
+    ],
+    "sizes": [
+      "P",
+      "M"
+    ],
+    "colors": [
+      "Vinho"
+    ],
+    "variants": [
+      {
+        "sku": "BODY_VINHO-P-VINHO",
+        "size": "P",
+        "color": "Vinho",
+        "stock": 4
+      },
+      {
+        "sku": "BODY_VINHO-M-VINHO",
+        "size": "M",
+        "color": "Vinho",
+        "stock": 4
+      }
+    ],
+    "featured": true,
+    "active": true,
+    "stock": 8,
+    "weightKg": 0.35,
+    "widthCm": 20,
+    "heightCm": 5,
+    "lengthCm": 28,
+    "logisticsMode": "profile",
+    "logisticsProfileId": "body-cropped",
+    "updatedAt": "2026-07-13T12:15:46.936Z"
+  },
+  {
+    "id": "calca-alfaiataria",
+    "slug": "calca-alfaiataria",
+    "name": "Calça Alfaiataria",
+    "category": "Feminino",
+    "price": 80,
+    "compareAtPrice": null,
+    "description": "Modelagem moderna com ótimo caimento. Disponível em preto e marrom.",
+    "image": "/products/calca-alfaiataria.svg",
+    "images": [
+      "/products/calca-alfaiataria.svg"
+    ],
+    "sizes": [
+      "P",
+      "M"
+    ],
+    "colors": [
+      "Preto",
+      "Marrom"
+    ],
+    "featured": true,
+    "active": true,
+    "stock": 12,
+    "variants": [
+      {
+        "sku": "CALCA-ALFAIATARIA-P-PRETO",
+        "size": "P",
+        "color": "Preto",
+        "stock": 3
+      },
+      {
+        "sku": "CALCA-ALFAIATARIA-M-PRETO",
+        "size": "M",
+        "color": "Preto",
+        "stock": 3
+      },
+      {
+        "sku": "CALCA-ALFAIATARIA-P-MARROM",
+        "size": "P",
+        "color": "Marrom",
+        "stock": 3
+      },
+      {
+        "sku": "CALCA-ALFAIATARIA-M-MARROM",
+        "size": "M",
+        "color": "Marrom",
+        "stock": 3
+      }
+    ],
+    "logisticsMode": "profile",
+    "logisticsProfileId": "calca"
+  },
+  {
+    "id": "vestido-couro-eco",
+    "slug": "vestido-couro-ecologico",
+    "name": "Vestido Couro Ecológico",
+    "category": "Feminino",
+    "price": 120,
+    "compareAtPrice": 139.9,
+    "description": "Peça marcante em couro ecológico, com acabamento elegante e moderno.",
+    "image": "/products/vestido-couro.svg",
+    "images": [
+      "/products/vestido-couro.svg"
+    ],
+    "sizes": [
+      "P",
+      "M"
+    ],
+    "colors": [
+      "Preto",
+      "Caramelo"
+    ],
+    "featured": true,
+    "active": true,
+    "stock": 6,
+    "variants": [
+      {
+        "sku": "VESTIDO-COURO-P-PRETO",
+        "size": "P",
+        "color": "Preto",
+        "stock": 2
+      },
+      {
+        "sku": "VESTIDO-COURO-M-PRETO",
+        "size": "M",
+        "color": "Preto",
+        "stock": 1
+      },
+      {
+        "sku": "VESTIDO-COURO-P-CARAMELO",
+        "size": "P",
+        "color": "Caramelo",
+        "stock": 2
+      },
+      {
+        "sku": "VESTIDO-COURO-M-CARAMELO",
+        "size": "M",
+        "color": "Caramelo",
+        "stock": 1
+      }
+    ],
+    "logisticsMode": "profile",
+    "logisticsProfileId": "vestido"
+  },
+  {
+    "id": "vestido-classico",
+    "slug": "vestido-classico",
+    "name": "Vestido Clássico",
+    "category": "Feminino",
+    "price": 145,
+    "compareAtPrice": null,
+    "description": "Vestido versátil para eventos, passeios e ocasiões especiais.",
+    "image": "/products/vestido-classico.svg",
+    "images": [
+      "/products/vestido-classico.svg"
+    ],
+    "sizes": [
+      "P",
+      "M",
+      "G"
+    ],
+    "colors": [
+      "Preto",
+      "Rosa"
+    ],
+    "featured": true,
+    "active": true,
+    "stock": 10,
+    "variants": [
+      {
+        "sku": "VESTIDO-CLASSICO-P-PRETO",
+        "size": "P",
+        "color": "Preto",
+        "stock": 2
+      },
+      {
+        "sku": "VESTIDO-CLASSICO-M-PRETO",
+        "size": "M",
+        "color": "Preto",
+        "stock": 2
+      },
+      {
+        "sku": "VESTIDO-CLASSICO-G-PRETO",
+        "size": "G",
+        "color": "Preto",
+        "stock": 1
+      },
+      {
+        "sku": "VESTIDO-CLASSICO-P-ROSA",
+        "size": "P",
+        "color": "Rosa",
+        "stock": 2
+      },
+      {
+        "sku": "VESTIDO-CLASSICO-M-ROSA",
+        "size": "M",
+        "color": "Rosa",
+        "stock": 2
+      },
+      {
+        "sku": "VESTIDO-CLASSICO-G-ROSA",
+        "size": "G",
+        "color": "Rosa",
+        "stock": 1
+      }
+    ],
+    "logisticsMode": "profile",
+    "logisticsProfileId": "vestido"
+  },
+  {
+    "id": "conjunto-cropped-saia",
+    "slug": "conjunto-cropped-e-saia",
+    "name": "Conjunto Cropped + Saia",
+    "category": "Feminino",
+    "price": 120,
+    "compareAtPrice": null,
+    "description": "Conjunto com leve elasticidade. Veste manequins 38, 40 e 42. Cropped: busto 92 cm e altura 29 cm. Saia: cintura 74 cm, quadril 98 cm e comprimento 39 cm.",
+    "image": "/products/conjunto.svg",
+    "images": [
+      "/products/conjunto.svg"
+    ],
+    "sizes": [
+      "M — veste 38 ao 42"
+    ],
+    "colors": [
+      "Preto",
+      "Caramelo"
+    ],
+    "featured": true,
+    "active": true,
+    "stock": 7,
+    "variants": [
+      {
+        "sku": "CONJUNTO-M-PRETO",
+        "size": "M — veste 38 ao 42",
+        "color": "Preto",
+        "stock": 4
+      },
+      {
+        "sku": "CONJUNTO-M-CARAMELO",
+        "size": "M — veste 38 ao 42",
+        "color": "Caramelo",
+        "stock": 3
+      }
+    ],
+    "logisticsMode": "profile",
+    "logisticsProfileId": "conjunto"
+  },
+  {
+    "id": "blusa-versatil",
+    "slug": "blusa-versatil",
+    "name": "Blusa Versátil",
+    "category": "Plus Size",
+    "price": 65,
+    "compareAtPrice": null,
+    "description": "Blusa leve, confortável e fácil de combinar para o dia a dia.",
+    "image": "/products/blusa.svg",
+    "images": [
+      "/products/blusa.svg"
+    ],
+    "sizes": [
+      "M",
+      "G",
+      "GG"
+    ],
+    "colors": [
+      "Branco",
+      "Preto",
+      "Nude"
+    ],
+    "featured": false,
+    "active": true,
+    "stock": 11,
+    "variants": [
+      {
+        "sku": "BLUSA-M-BRANCO",
+        "size": "M",
+        "color": "Branco",
+        "stock": 2
+      },
+      {
+        "sku": "BLUSA-G-BRANCO",
+        "size": "G",
+        "color": "Branco",
+        "stock": 1
+      },
+      {
+        "sku": "BLUSA-GG-BRANCO",
+        "size": "GG",
+        "color": "Branco",
+        "stock": 1
+      },
+      {
+        "sku": "BLUSA-M-PRETO",
+        "size": "M",
+        "color": "Preto",
+        "stock": 2
+      },
+      {
+        "sku": "BLUSA-G-PRETO",
+        "size": "G",
+        "color": "Preto",
+        "stock": 1
+      },
+      {
+        "sku": "BLUSA-GG-PRETO",
+        "size": "GG",
+        "color": "Preto",
+        "stock": 1
+      },
+      {
+        "sku": "BLUSA-M-NUDE",
+        "size": "M",
+        "color": "Nude",
+        "stock": 1
+      },
+      {
+        "sku": "BLUSA-G-NUDE",
+        "size": "G",
+        "color": "Nude",
+        "stock": 1
+      },
+      {
+        "sku": "BLUSA-GG-NUDE",
+        "size": "GG",
+        "color": "Nude",
+        "stock": 1
+      }
+    ],
+    "logisticsMode": "profile",
+    "logisticsProfileId": "peca-leve"
+  },
+  {
+    "id": "saia-moderna",
+    "slug": "saia-moderna",
+    "name": "Saia Moderna",
+    "category": "Plus Size",
+    "price": 110,
+    "compareAtPrice": null,
+    "description": "Saia moderna com caimento confortável e acabamento sofisticado.",
+    "image": "/products/saia.svg",
+    "images": [
+      "/products/saia.svg"
+    ],
+    "sizes": [
+      "M",
+      "G",
+      "GG"
+    ],
+    "colors": [
+      "Preto",
+      "Marrom"
+    ],
+    "featured": false,
+    "active": true,
+    "stock": 9,
+    "variants": [
+      {
+        "sku": "SAIA-M-PRETO",
+        "size": "M",
+        "color": "Preto",
+        "stock": 2
+      },
+      {
+        "sku": "SAIA-G-PRETO",
+        "size": "G",
+        "color": "Preto",
+        "stock": 2
+      },
+      {
+        "sku": "SAIA-GG-PRETO",
+        "size": "GG",
+        "color": "Preto",
+        "stock": 1
+      },
+      {
+        "sku": "SAIA-M-MARROM",
+        "size": "M",
+        "color": "Marrom",
+        "stock": 2
+      },
+      {
+        "sku": "SAIA-G-MARROM",
+        "size": "G",
+        "color": "Marrom",
+        "stock": 1
+      },
+      {
+        "sku": "SAIA-GG-MARROM",
+        "size": "GG",
+        "color": "Marrom",
+        "stock": 1
+      }
+    ],
+    "logisticsMode": "profile",
+    "logisticsProfileId": "short-saia"
+  }
+]

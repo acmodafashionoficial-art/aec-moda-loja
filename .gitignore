@@ -1,0 +1,30 @@
+node_modules
+.next
+out
+.vercel
+*.log
+.DS_Store
+
+# Nunca versionar credenciais
+.env
+.env.local
+.env.*.local
+.env.production
+.env.development
+!.env.example
+
+.private/*
+!.private/.gitkeep
+
+.vercel
+.env*
+
+data/orders.json
+data/payment-settings.json
+data/shipping-settings.json
+data/logistics-settings.json
+
+GUIA-SUPABASE-FASE-6.md
+
+prompt completo da loja.txt
+data/store-settings.json
