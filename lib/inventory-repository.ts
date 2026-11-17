@@ -215,15 +215,34 @@ function combineUnit(unit: InventoryUnitRow, variant: VariantRow | undefined): I
 
 export async function listAvailableInventoryUnits() {
   const supabase = adminClient();
-  const { data, error } = await supabase
-    .from("inventory_units")
-    .select("id, variant_id, code, status, in_store_sale_id, sold_at, created_at")
-    .eq("status", "available")
-    .order("created_at", { ascending: true })
-    .limit(5000);
-  if (error) throw new Error(`Erro ao carregar as etiquetas: ${error.message}`);
-  const units = (data || []) as InventoryUnitRow[];
-  const variants = await loadVariants(units.map((unit) => unit.variant_id));
+  const pageSize = 500;
+  const units: InventoryUnitRow[] = [];
+
+  for (let offset = 0; ; offset += pageSize) {
+    const { data, error } = await supabase
+      .from("inventory_units")
+      .select("id, variant_id, code, status, in_store_sale_id, sold_at, created_at")
+      .eq("status", "available")
+      .order("created_at", { ascending: true })
+      .order("id", { ascending: true })
+      .range(offset, offset + pageSize - 1);
+
+    if (error) {
+      throw new Error(`Erro ao carregar as etiquetas: ${error.message}`);
+    }
+
+    const page = (data || []) as InventoryUnitRow[];
+    units.push(...page);
+
+    if (page.length < pageSize) {
+      break;
+    }
+  }
+
+  const variants = await loadVariants(
+    units.map((unit) => unit.variant_id)
+  );
+
   return units
     .map((unit) => combineUnit(unit, variants.get(unit.variant_id)))
     .filter((unit): unit is InventoryUnitView => Boolean(unit))
