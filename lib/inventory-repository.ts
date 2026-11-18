@@ -143,20 +143,47 @@ function mapProduct(value: VariantRow["products"]) {
 }
 
 async function loadVariants(variantIds: string[]) {
-  if (!variantIds.length) return new Map<string, VariantRow>();
-  const supabase = adminClient();
-  const { data, error } = await supabase
-    .from("product_variants")
-    .select("id, product_id, sku, size, color, stock, reserved_stock, active, products!product_variants_product_id_fkey(id, name, price, image_url, image_thumbnail_url, active)")
-    .in("id", [...new Set(variantIds)]);
-  if (error) {
-    // Keep the server log actionable without exposing credentials or customer data.
-    const diagnostic = [error.code, error.message, error.details, error.hint]
-      .filter(Boolean)
-      .join(" | ");
-    throw new Error(`Erro ao carregar as variações: ${diagnostic}`);
+  const uniqueIds = [...new Set(variantIds)];
+
+  if (!uniqueIds.length) {
+    return new Map<string, VariantRow>();
   }
-  return new Map(((data || []) as unknown as VariantRow[]).map((variant) => [variant.id, variant]));
+
+  const supabase = adminClient();
+  const variants = new Map<string, VariantRow>();
+  const batchSize = 100;
+
+  for (let i = 0; i < uniqueIds.length; i += batchSize) {
+    const batch = uniqueIds.slice(i, i + batchSize);
+
+    const { data, error } = await supabase
+      .from("product_variants")
+      .select(
+        "id, product_id, sku, size, color, stock, reserved_stock, active, products!product_variants_product_id_fkey(id, name, price, image_url, image_thumbnail_url, active)"
+      )
+      .in("id", batch);
+
+    if (error) {
+      const diagnostic = [
+        error.code,
+        error.message,
+        error.details,
+        error.hint,
+      ]
+        .filter(Boolean)
+        .join(" | ");
+
+      throw new Error(
+        `Erro ao carregar as variações (lote ${Math.floor(i / batchSize) + 1}): ${diagnostic}`
+      );
+    }
+
+    for (const variant of (data || []) as unknown as VariantRow[]) {
+      variants.set(variant.id, variant);
+    }
+  }
+
+  return variants;
 }
 
 function combineUnit(unit: InventoryUnitRow, variant: VariantRow | undefined): InventoryUnitView | null {
@@ -188,15 +215,34 @@ function combineUnit(unit: InventoryUnitRow, variant: VariantRow | undefined): I
 
 export async function listAvailableInventoryUnits() {
   const supabase = adminClient();
-  const { data, error } = await supabase
-    .from("inventory_units")
-    .select("id, variant_id, code, status, in_store_sale_id, sold_at, created_at")
-    .eq("status", "available")
-    .order("created_at", { ascending: true })
-    .limit(5000);
-  if (error) throw new Error(`Erro ao carregar as etiquetas: ${error.message}`);
-  const units = (data || []) as InventoryUnitRow[];
-  const variants = await loadVariants(units.map((unit) => unit.variant_id));
+  const pageSize = 500;
+  const units: InventoryUnitRow[] = [];
+
+  for (let offset = 0; ; offset += pageSize) {
+    const { data, error } = await supabase
+      .from("inventory_units")
+      .select("id, variant_id, code, status, in_store_sale_id, sold_at, created_at")
+      .eq("status", "available")
+      .order("created_at", { ascending: true })
+      .order("id", { ascending: true })
+      .range(offset, offset + pageSize - 1);
+
+    if (error) {
+      throw new Error(`Erro ao carregar as etiquetas: ${error.message}`);
+    }
+
+    const page = (data || []) as InventoryUnitRow[];
+    units.push(...page);
+
+    if (page.length < pageSize) {
+      break;
+    }
+  }
+
+  const variants = await loadVariants(
+    units.map((unit) => unit.variant_id)
+  );
+
   return units
     .map((unit) => combineUnit(unit, variants.get(unit.variant_id)))
     .filter((unit): unit is InventoryUnitView => Boolean(unit))
